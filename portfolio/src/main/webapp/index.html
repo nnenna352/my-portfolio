@@ -2,17 +2,72 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Nnenna's Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
   </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+ <body>
+
+     
+    <h1>Nnenna Dara</h1>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'About Me')" id="defaultOpen">About Me</button>
+        <button class="tablinks" onclick="openTab(event, 'Job Experience')">Job Experience</button>
+        <button class="tablinks" onclick="openTab(event, 'Extracurriculars')">Extracurriculars</button>
+        <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
     </div>
-  </body>
+ 
+    <div id="About Me" class="tabcontent">
+            <h1>About Me</h1>
+            <p style="color:DodgerBlue;">This is my portfolio page.</p>
+            <hr>
+            <img src="/images/picture1.jpg" alt="A picture of me!" style="width:500px;height:550px;"> >
+            <p>I am a rising junior at Cornell University trying to
+                pursue an independent major, combining the curriculum of 
+                computer science and mechanical engineering.I am interning
+                at Google as a STEP intern this summer. I am interested in 
+                software development, robotics and product management.</p>
+            <hr>
+            <p>My <a href="https://www.linkedin.com/in/nnenna-dara-227328179/">LinkedIn</a></p>
+            <p>My <a href="https://github.com/nnenna352">GitHub</a></p>
+
+            <p>Click here to get a random fun fact about me:</p>
+            <button onclick="addRandomFunFact()">Click here</button>
+            <div id="funfact-container"></div>
+    </div>
+
+    <div id="Job Experience" class="tabcontent">
+        <h2>Job Experiences</h2>
+            <u1>
+                <li>Student Training in Engineering Program (Present)</li>
+                <li>iD Tech Course Instructor (Summer 2019)</li>
+                <li>Summer Intern at Reddington, Lagos. (Summer 2018)</li>
+            </u1>
+    </div>
+
+    <div id="Extracurriculars" class="tabcontent">
+        <h2>Leadership Roles/ Extracurriculars</h2>
+        <u1>
+            <li>Student Services Coordinator for Society of Women Engineers</li>
+            <li>Publicity Chair for the National Society of Black Engineers</li>
+            <li>Operations Lead- Scholars in Our Society and Africa</li>
+        </u1> 
+        <img src="/images/picture2.jpg" alt="A picture of me at NSBE conference" style="width:500px;height:550px;"> 
+        <img src="/images/picture3.jpg" alt="A picture of me SOSA work in Nigeria" style="width:500px;height:550px;">>>
+    </div>
+
+    <div id="Projects" class="tabcontent">
+        <h2>Projects:</h2>
+        <u1>
+            <li>Armable-an arm rest for multi-functional use.</li>
+            <img src="/images/picture2.jpg" alt="A picture of me at NSBE conference" style="width:500px;height:550px;"> 
+            <li>Double-acting water pump</li>
+            <img src="/images/picture2.jpg" alt="A picture of me at NSBE conference" style="width:500px;height:550px;"> 
+        </u1>
+    </div>
+    <button onclick="getDataUsingArrowFunctions()">Fetch data!</button>
+      <div id="data-container"></div>
+<script src="script.js"></script>     
+</body>
 </html>
+.
