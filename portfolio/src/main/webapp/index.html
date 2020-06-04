@@ -11,10 +11,10 @@
     <h1>Nnenna Dara</h1>
 
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'About Me')" id="defaultOpen">About Me</button>
-        <button class="tablinks" onclick="openCity(event, 'Job Experience')">Job Experience</button>
-        <button class="tablinks" onclick="openCity(event, 'Extracurriculars')">Extracurriculars</button>
-        <button class="tablinks" onclick="openCity(event, 'Projects')">Projects</button>
+        <button class="tablinks" onclick="openTab(event, 'About Me')" id="defaultOpen">About Me</button>
+        <button class="tablinks" onclick="openTab(event, 'Job Experience')">Job Experience</button>
+        <button class="tablinks" onclick="openTab(event, 'Extracurriculars')">Extracurriculars</button>
+        <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
     </div>
  
     <div id="About Me" class="tabcontent">
@@ -32,8 +32,8 @@
             <p>My <a href="https://github.com/nnenna352">GitHub</a></p>
 
             <p>Click here to get a random fun fact about me:</p>
-            <button onclick="addRandomGreeting()">Click here</button>
-            <div id="greeting-container"></div>
+            <button onclick="addRandomFunFact()">Click here</button>
+            <div id="funfact-container"></div>
     </div>
 
     <div id="Job Experience" class="tabcontent">
