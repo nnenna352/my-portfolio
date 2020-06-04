@@ -53,5 +53,8 @@ document.getElementById("defaultOpen").click();
 
 async function getCommentUsingAsyncAwait() {
   const response = await fetch('/data');
-  document.getElementById('comment-container').innerText = ("<h1>Hello Nnenna!</h1>");
+  const json = await response.json();
+  document.getElementById('comment-container').innerText = (json);
 }
+
+
