@@ -26,7 +26,7 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
-function openCity(evt, cityName) {
+function openTab(evt, cityName) {
   // Declare all variables
   var i, tabcontent, tablinks;
 
@@ -50,8 +50,11 @@ function openCity(evt, cityName) {
 //Get the element with id="defaultOpen" to open by default
 document.getElementById("defaultOpen").click();
 
-function getDataUsingArrowFunctions() {
-  fetch('/data').then(response => response.text()).then((data) => {
-    document.getElementById('data-container').innerText = data;
-  });
+
+async function getCommentUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const json = await response.json();
+  document.getElementById('comment-container').innerText = (json);
 }
+
+
