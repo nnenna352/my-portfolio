@@ -28,13 +28,7 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
- // public static void main(String[] args) {
-   // ArrayList<String> messages = new ArrayList<String>();
-  //  messages.add("How are you?");
-  //  messages.add("What did you have for breakfast?");
-  //  messages.add("How old are you?");
-  //  System.out.println(messages);
-//}
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     //response.setContentType("text/html;");
@@ -50,16 +44,11 @@ public class DataServlet extends HttpServlet {
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
-
+   // Use Gson library to convert Arraylist to json
   private String convertToJson(ArrayList<String> messages) {
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     return json;
   }
-
-
-
-
 }
