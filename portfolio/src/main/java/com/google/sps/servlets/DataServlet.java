@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
@@ -34,11 +37,43 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       String commentString = request.getParameter("data-input");
       messages.add(commentString);
+      
+      //Create entity 
+      Entity dataEntity = new Entity("Data");
+      dataEntity.setProperty("comment", commentString);
+   ;
+    //Create datastore and put entity
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(dataEntity);
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //response.setContentType("text/html;");
+    String json = convertToJson(messages);
+
+    // Send the JSON as the response
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  private String convertToJson(ArrayList<String> messages) {
+    Gson gson = new Gson();
+    String json = gson.toJson(messages);
+    return json;
+  }
+ 
+
+
+
+  //private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    //String value = request.getParameter(name);
+    //if (value == null) {
+    //  return defaultValue;
+    //}
+    //return value;
+  //}
+}
+//response.setContentType("text/html;");
     //response.getWriter().println("<h1>Hello Nnenna!</h1>");
 
     //TO DO: Remove commented code.
@@ -47,23 +82,3 @@ public class DataServlet extends HttpServlet {
     //messages.add("How are you?");
     //messages.add("What did you have for breakfast?");
     //messages.add("How old are you?");
-    String json = convertToJson(messages);
-
-    // Send the JSON as the response
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
-  private String convertToJson(ArrayList<String> messages) {
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
-    return json;
-  }
-
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  }
-}
