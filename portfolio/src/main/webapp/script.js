@@ -51,10 +51,31 @@ function openTab(evt, cityName) {
 document.getElementById("defaultOpen").click();
 
 
-async function getCommentUsingAsyncAwait() {
-  const response = await fetch('/data');
-  const json = await response.json();
-  document.getElementById('comment-container').innerText = (json);
+function getComment() {
+fetch('/data?max=5').then(response => response.json()).then((comments) => {
+    const commentId= document.getElementById("comments-container");
+    commentId.innerHTML='';
+    comments.forEach((comment) => {commentId.appendChild(createListElement(comment.comment))}
+    )})
+}   
+
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
 
+/** Tells the server to delete the comment. */
+function deleteComments(comment) {
+  fetch('/delete-data', {method: 'POST', body: params});
+}
+
+var map
+function createMap() {
+   map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+      console.log("map is running");
+}
 
