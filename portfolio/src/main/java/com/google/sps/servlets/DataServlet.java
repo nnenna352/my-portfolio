@@ -29,26 +29,34 @@ import java.util.ArrayList;
 public class DataServlet extends HttpServlet {
 
 
+  private ArrayList<String> messages = new ArrayList<String>();
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String commentString = request.getParameter("data-input");
+      messages.add(commentString);
+  }
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //response.setContentType("text/html;");
-    //response.getWriter().println("<h1>Hello Nnenna!</h1>");
-
-    // Convert the messages to JSON
-    ArrayList<String> messages = new ArrayList<String>();
-    messages.add("How are you?");
-    messages.add("What did you have for breakfast?");
-    messages.add("How old are you?");
     String json = convertToJson(messages);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
-   // Use Gson library to convert Arraylist to json
+
   private String convertToJson(ArrayList<String> messages) {
     Gson gson = new Gson();
     String json = gson.toJson(messages);
     return json;
+  }
+
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }

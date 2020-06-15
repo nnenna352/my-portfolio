@@ -65,8 +65,19 @@
             <img src="/images/picture2.jpg" alt="A picture of me at NSBE conference" style="width:500px;height:550px;"> 
         </u1>
     </div>
+
     <button onclick="getCommentUsingAsyncAwait()">Click Here!</button>
       <div id="comment-container"></div>
+
+
+    <form action="/data" method="POST">
+        <p>Make a comment:</p>
+        <textarea name="data-input">Type here:</textarea>
+        <br/><br/>
+        <input type="submit" />
+    </form> 
+
+
 <script src="script.js"></script>     
 </body>
 </html>
