@@ -81,11 +81,11 @@
     </form> 
     <form action="/data" method="POST">
         <p> Comment limit:</p>
-        <input type="number" id="comment-limit" name="comment-limit" min="1" max="10" value="5" >
+        <input type="number" id="comment-limit" name="comment-limit" min="1" max="10" value="10" >
         <input type="submit" value"submit"/>
     </form>
 
-  <button onclick="deleteComments()">Delete Comments</button>
+  <button onclick="deleteComment()">Delete Comments</button>
   <p>Comments:</p>
   <ul id="comments-container"></ul>
    

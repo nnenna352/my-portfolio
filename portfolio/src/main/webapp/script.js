@@ -52,10 +52,22 @@ document.getElementById("defaultOpen").click();
 
 
 function getComment() {
-fetch('/data?max=5').then(response => response.json()).then((comments) => {
+const commentLimit = window.location.search;
+console.log(commentLimit);
+const urlParams = new URLSearchParams(commentLimit);
+var maxstring = urlParams.get('comment-limit')
+console.log(maxstring);
+if (maxstring==null){maxstring=10} 
+fetch('/data?comment-limit='+maxstring).then(response => response.json()).then((comments) => {
     const commentId= document.getElementById("comments-container");
     commentId.innerHTML='';
-    comments.forEach((comment) => {commentId.appendChild(createListElement(comment.comment))}
+    comments.forEach((comment) => {
+       /* let button = document.createElement("button");
+        button.classList.add("button");
+        button.innerHTML="Delete";
+        button.addEventListener("click",deleteComment);*/
+        commentId.appendChild(createListElement(comment.comment));
+        }
     )})
 }   
 
@@ -67,8 +79,9 @@ function createListElement(text) {
 }
 
 /** Tells the server to delete the comment. */
-function deleteComments(comment) {
-  fetch('/delete-data', {method: 'POST', body: params});
+function deleteComment() {
+  fetch('/delete-data', {method: 'POST'}).then(() => {console.log("we got here, delete.")})
+  getComment();
 }
 
 var map
@@ -76,6 +89,7 @@ function createMap() {
    map = new google.maps.Map(
       document.getElementById('map'),
       {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+ 
       console.log("map is running");
 }
 
