@@ -2,14 +2,13 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Nnenna's Portfolio</title>
+    <title>Nnenna's Portfolio</title> 
+    
     <link rel="stylesheet" href="style.css">
   </head>
- <body>
-
-     
+ <body onload="getComment();">     
     <h1>Nnenna Dara</h1>
-
+    
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'About Me')" id="defaultOpen">About Me</button>
         <button class="tablinks" onclick="openTab(event, 'Job Experience')">Job Experience</button>
@@ -17,7 +16,7 @@
         <button class="tablinks" onclick="openTab(event, 'Projects')">Projects</button>
     </div>
  
-    <div id="About Me" class="tabcontent">
+    <div id="About Me" class="tabcontent" >  
             <h1>About Me</h1>
             <p style="color:DodgerBlue;">This is my portfolio page.</p>
             <hr>
@@ -34,6 +33,14 @@
             <p>Click here to get a random fun fact about me:</p>
             <button onclick="addRandomFunFact()">Click here</button>
             <div id="funfact-container"></div>
+            <div id="map"></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhL9ZYaDW6xxUs53chHdvEIbFuea09cYQ"></script>
+            <script>
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8
+            });
+            </script>
     </div>
 
     <div id="Job Experience" class="tabcontent">
@@ -65,20 +72,26 @@
             <img src="/images/picture2.jpg" alt="A picture of me at NSBE conference" style="width:500px;height:550px;"> 
         </u1>
     </div>
-
-    <button onclick="getCommentUsingAsyncAwait()">Click Here!</button>
-      <div id="comment-container"></div>
-
-
+    
     <form action="/data" method="POST">
         <p>Make a comment:</p>
-        <textarea name="data-input">Type here:</textarea>
+        <textarea name="data-input"></textarea>
         <br/><br/>
-        <input type="submit" />
+        <input type="submit" value"submit"/>
     </form> 
+    <form action="/data" method="POST">
+        <p> Comment limit:</p>
+        <input type="number" id="comment-limit" name="comment-limit" min="1" max="10" value="10" >
+        <input type="submit" value"submit"/>
+    </form>
 
-
-<script src="script.js"></script>     
-</body>
+  <button onclick="deleteComment()">Delete Comments</button>
+  <p>Comments:</p>
+  <ul id="comments-container"></ul>
+   
+   
+  
+    <script src="script.js"></script>
+ </body>
 </html>
 .

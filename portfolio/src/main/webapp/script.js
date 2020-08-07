@@ -51,10 +51,45 @@ function openTab(evt, cityName) {
 document.getElementById("defaultOpen").click();
 
 
-async function getCommentUsingAsyncAwait() {
-  const response = await fetch('/data');
-  const json = await response.json();
-  document.getElementById('comment-container').innerText = (json);
+function getComment() {
+const commentLimit = window.location.search;
+console.log(commentLimit);
+const urlParams = new URLSearchParams(commentLimit);
+var maxstring = urlParams.get('comment-limit')
+console.log(maxstring);
+if (maxstring==null){maxstring=10} 
+fetch('/data?comment-limit='+maxstring).then(response => response.json()).then((comments) => {
+    const commentId= document.getElementById("comments-container");
+    commentId.innerHTML='';
+    comments.forEach((comment) => {
+       /* let button = document.createElement("button");
+        button.classList.add("button");
+        button.innerHTML="Delete";
+        button.addEventListener("click",deleteComment);*/
+        commentId.appendChild(createListElement(comment.comment));
+        }
+    )})
+}   
+
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
 
+/** Tells the server to delete the comment. */
+function deleteComment() {
+  fetch('/delete-data', {method: 'POST'}).then(() => {console.log("we got here, delete.")})
+  getComment();
+}
+
+var map
+function createMap() {
+   map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+ 
+      console.log("map is running");
+}
 
