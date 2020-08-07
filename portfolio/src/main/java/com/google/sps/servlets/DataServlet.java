@@ -36,6 +36,7 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+
   private ArrayList<String> messages = new ArrayList<String>();
 
   static class Data{
@@ -75,6 +76,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     //String json = convertToJson(messages);
     Query query = new Query("Data").addSort("timestamp", SortDirection.DESCENDING);
 
@@ -102,7 +104,6 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(gson.toJson(comments));
   }
    
-
     private int getLimitChoice(HttpServletRequest request) {
     // Get the input from the form.
     String maxstring = request.getParameter("comment-limit");
@@ -118,8 +119,4 @@ public class DataServlet extends HttpServlet {
     return max;
     }
 }
- 
-
-
-
  
